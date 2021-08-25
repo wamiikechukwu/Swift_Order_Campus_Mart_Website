@@ -20,7 +20,7 @@ var storage = firebase.storage();
 // Create a storage reference from our storage service
 var storageRef = storage.ref();
 
-let imageDownloadLink;
+let imageDownloadLink = [];
 
 $(function () {
     //--
@@ -34,7 +34,9 @@ $(function () {
     let shortDescription;
     let longDescription;
     let price;
-    let promoPrice
+    let promoPrice;
+    let authorName;
+    let authorPhoneNum;
     //--
 
     let fastFood = ["Rice, Beans & Paste", "Soup & Sauces", "Soup bowls", "Proteins", "Drink & Water", "Swallows", "Yam & Plantain", "Chips", "Finger Foods"]
@@ -54,9 +56,6 @@ $(function () {
     let others = ["Baggage & Luggage", "Books and Stationary"]
 
     let subsectionsArr = [undefined, fastFood, groceries, houseHold, sport, healthCare, personalCare, lodge, computer, phone, homeFurniture, maleClothing, femaleClothing, handyMan, assignment, others];
-
-    //file reader
-    let fileReader = new FileReader();
 
     document.getElementById('categorySubDataList').addEventListener("change", function () {
         subCategoryValue = this.value;
@@ -86,6 +85,9 @@ $(function () {
         longDescription = $("#subSectionLongDescription").val()
         price = $("#subSectionPrice").val()
         promoPrice = $("#subSectionPromoPrice").val()
+        authorName = $("#productAuthorName").val()
+        authorPhoneNum = $("#productAuthorPhoneNum").val()
+
 
         let subCat = newCatArray[subCategory];
 
@@ -93,10 +95,13 @@ $(function () {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 db.collection("category").doc(subCat).collection(subSection).doc(title).set({
+                    title: title,
                     shortDes: shortDescription,
                     longDes: longDescription,
                     price: price,
                     prompPrice: promoPrice,
+                    authorName: authorName,
+                    authorPhoneNum: authorPhoneNum,
                     file: imageDownloadLink
                 }).then(() => {
                     alert("Product successfully saved ");
@@ -117,17 +122,26 @@ $(function () {
 let fileInput = document.getElementById("ProductFile");
 fileInput.addEventListener("change", function (e) {
     let productTitleForImageUpload = document.getElementById("subSectionTitle").value
-    let file = e.target.files[0];
-    let imageRef = storageRef.child(`${productTitleForImageUpload}/${file.name}`);
-    imageRef.put(file).then((snapshot) => {
-        console.log('Uploaded a blob or file!' + file);
+    //---DELETE
+    let totalImages = e.target.files.length
 
-        snapshot.ref.getDownloadURL().then(function (url){
-            imageDownloadLink = url
-            console.log('download link is ' + url);
-        })
+    for (let i = 0; i < totalImages; i++) {
+        let file = e.target.files[i];
 
-    });
+        let imageRef = storageRef.child(`${productTitleForImageUpload}/${file.name}`);
+        imageRef.put(file).then((snapshot) => {
+            console.log('Uploaded a blob or file!' + file);
+
+            snapshot.ref.getDownloadURL().then(function (url) {
+                imageDownloadLink [i] = url
+                console.log('download link is ' + url);
+                alert(`Successfully added ${file.name}`)
+            })
+
+        });
+
+
+    }
 });
 
 
