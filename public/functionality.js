@@ -77,7 +77,7 @@ $(function () {
 
     $("#addItemForm").submit(function (e) {
         e.preventDefault();
-        let newCatArray = [undefined, "Fast Food", "Groceries", "House hold & Kitchen Essentials", "Sport & Fitness", "Healthcare & Pharmacy", "Lodge For Rent", "Computer & Accessories", "Phone & Accessories", "Home Furniture & Appliances", "Male Clothing & Accessories", "Female Clothing & Accessories", "Handyman & Services", "Assignment & Project Assistance", "Other"]
+        let newCatArray = [undefined, "Fast Food", "Groceries", "House hold & Kitchen Essentials", "Sport & Fitness", "Healthcare & Pharmacy", "Personal Care & Beauty", "Lodge For Rent", "Computer & Accessories", "Phone & Accessories", "Home Furniture & Appliances", "Male Clothing & Accessories", "Female Clothing & Accessories", "Handyman & Services", "Assignment & Project Assistance", "Other"]
         subCategory = $("#categorySubDataList").val();
         subSection = $("#categorySubSection").val()
         title = $("#subSectionTitle").val()
