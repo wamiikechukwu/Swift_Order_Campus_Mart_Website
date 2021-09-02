@@ -142,7 +142,7 @@
                     <div class="container">
                         <label class="form-label" for="select-main-path">Select the main path</label>
                         <select class="form-select" aria-label=".form-select example" id="select-main-path">
-                            <option value="1">Category</option>
+                            <option value="1">Vendors</option>
                         </select>
                     </div>
                     <br/>
@@ -175,20 +175,14 @@
                         </select>
                     </div>
                     <br/>
+
                     <!--                    PRODUCT TITLE-->
                     <div class="container">
-                        <label for="subSectionTitle" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="subSectionTitle" placeholder="Product Title">
-                    </div>
-                    <br/>
-
-                    <!--                    IMAGE-->
-                    <div class="container">
-                        <label for="ProductFile" class="form-label">Product Images</label>
-                        <input class="form-control" type="file" name="files[]" id="ProductFile" multiple>
+                        <label for="productTitle" class="form-label">Product Title</label>
+                        <input type="text" class="form-control" id="productTitle"
+                               placeholder="Product Title">
                     </div>
                     <br>
-
 
                     <!--                    PRODUCT SHORT DESCRIPTION-->
                     <div class="container">
@@ -206,19 +200,25 @@
                     </div>
                     <br/>
 
-                    <!--                    PRODUCT AUTHOR-->
+                    <!--                    IMAGE-->
                     <div class="container">
-                        <label for="productAuthorName" class="form-label">Product Author Name</label>
-                        <input type="text" class="form-control" id="productAuthorName"
-                               placeholder="Product Author Name">
-
+                        <label for="ProductFile" class="form-label">Product Images</label>
+                        <input class="form-control" type="file" name="files[]" id="ProductFile" multiple>
                     </div>
                     <br>
-                    <!--                    PRODUCT AUTHOR NAME-->
+
+                    <!--                    VENDOR NAME-->
                     <div class="container">
-                        <label for="productAuthorPhoneNum" class="form-label">Product Author Phone Number</label>
-                        <input type="text" class="form-control" id="productAuthorPhoneNum"
-                               placeholder="Product Author Phone Number">
+                        <label for="vendorName" class="form-label">Vendor Name</label>
+                        <input type="text" class="form-control" id="vendorName" placeholder="Vendor Name">
+                    </div>
+                    <br/>
+
+                    <!--                    VENDOR PHONE NUMBER-->
+                    <div class="container">
+                        <label for="vendorPhoneNum" class="form-label">Vendor Phone Number</label>
+                        <input type="text" class="form-control" id="vendorPhoneNum"
+                               placeholder="Vendor Phone Number">
                     </div>
                     <br>
 

@@ -35,11 +35,11 @@ $(function () {
     let longDescription;
     let price;
     let promoPrice;
-    let authorName;
-    let authorPhoneNum;
+    let vendorName;
+    let vendorPhoneNum;
     //--
 
-    let fastFood = ["Rice, Beans & Paste", "Soup & Sauces", "Soup bowls", "Proteins", "Drink & Water", "Swallows", "Yam & Plantain", "Chips", "Finger Foods"]
+    let fastFood = ["Rice", "Snack", "Soup"]
     let groceries = ["Fruits & Vegetable", "Oil and Spice & Herbs", "Milk, snack and beverages", "Drinks and wines", "Dairy, Cheese and Eggs", "Frozen food", "Caned & Packaged food", "Grains, Pasta & Noodle", "Bread and Bakery", "Meat and Seafood"]
     let houseHold = ["empty"]
     let sport = ["Shop clothing", "Fitness accessories", "Strength Training", "Team Sport Accessories", "Bicycles"]
@@ -80,13 +80,13 @@ $(function () {
         let newCatArray = [undefined, "Fast Food", "Groceries", "House hold & Kitchen Essentials", "Sport & Fitness", "Healthcare & Pharmacy", "Personal Care & Beauty", "Lodge For Rent", "Computer & Accessories", "Phone & Accessories", "Home Furniture & Appliances", "Male Clothing & Accessories", "Female Clothing & Accessories", "Handyman & Services", "Assignment & Project Assistance", "Other"]
         subCategory = $("#categorySubDataList").val();
         subSection = $("#categorySubSection").val()
-        title = $("#subSectionTitle").val()
+        title = $("#productTitle").val()
         shortDescription = $("#subSectionShortDescription").val()
         longDescription = $("#subSectionLongDescription").val()
         price = $("#subSectionPrice").val()
         promoPrice = $("#subSectionPromoPrice").val()
-        authorName = $("#productAuthorName").val()
-        authorPhoneNum = $("#productAuthorPhoneNum").val()
+        vendorName = $("#vendorName").val()
+        vendorPhoneNum = $("#vendorPhoneNum").val()
 
 
         let subCat = newCatArray[subCategory];
@@ -94,17 +94,18 @@ $(function () {
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                db.collection("category").doc(subCat).collection(subSection).doc(title).set({
+                db.collection("vendors").doc(subCat).collection(subSection).doc(vendorName).set({
                     title: title,
                     shortDes: shortDescription,
                     longDes: longDescription,
                     price: price,
                     prompPrice: promoPrice,
-                    authorName: authorName,
-                    authorPhoneNum: authorPhoneNum,
+                    vendorName: vendorName,
+                    vendorPhoneNum: vendorPhoneNum,
                     file: imageDownloadLink
                 }).then(() => {
                     alert("Product successfully saved ");
+                    location.reload()
                 })
                     .catch((error) => {
                         alert("Did not save product successfully");
@@ -112,7 +113,6 @@ $(function () {
                 // ...
             } else {
                 alert("User is not login ")
-
             }
         });
     });
@@ -121,7 +121,7 @@ $(function () {
 
 let fileInput = document.getElementById("ProductFile");
 fileInput.addEventListener("change", function (e) {
-    let productTitleForImageUpload = document.getElementById("subSectionTitle").value
+    let productTitleForImageUpload = document.getElementById("productTitle").value
     //---DELETE
     let totalImages = e.target.files.length
 

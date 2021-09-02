@@ -31,6 +31,8 @@ function registerUser(userEmail, userPassword){
             // Signed in
             var user = userCredential.user;
             console.log(user)
+            window.location.replace("./add-item.html");
+
             // ...
         })
         .catch((error) => {
