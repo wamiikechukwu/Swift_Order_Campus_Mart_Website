@@ -29,7 +29,7 @@ $(function () {
 
     //-- VALUES
     let subCategory;
-    let subSection;
+    let productSubCat;
     let title;
     let shortDescription;
     let longDescription;
@@ -79,7 +79,7 @@ $(function () {
         e.preventDefault();
         let newCatArray = [undefined, "Fast Food", "Groceries", "House hold & Kitchen Essentials", "Sport & Fitness", "Healthcare & Pharmacy", "Personal Care & Beauty", "Lodge For Rent", "Computer & Accessories", "Phone & Accessories", "Home Furniture & Appliances", "Male Clothing & Accessories", "Female Clothing & Accessories", "Handyman & Services", "Assignment & Project Assistance", "Other"]
         subCategory = $("#categorySubDataList").val();
-        subSection = $("#categorySubSection").val()
+        productSubCat = $("#categorySubSection").val()
         title = $("#productTitle").val()
         shortDescription = $("#subSectionShortDescription").val()
         longDescription = $("#subSectionLongDescription").val()
@@ -89,20 +89,22 @@ $(function () {
         vendorPhoneNum = $("#vendorPhoneNum").val()
 
 
-        let subCat = newCatArray[subCategory];
+        let productCat = newCatArray[subCategory];
 
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                db.collection("vendors").doc(subCat).collection(subSection).doc(vendorName).set({
+                db.collection("vendors").doc(productCat).collection(productSubCat).doc().set({
                     title: title,
                     shortDes: shortDescription,
                     longDes: longDescription,
                     price: price,
-                    prompPrice: promoPrice,
+                    promoPrice: promoPrice,
                     vendorName: vendorName,
                     vendorPhoneNum: vendorPhoneNum,
-                    file: imageDownloadLink
+                    file: imageDownloadLink,
+                    productCategory: productCat,
+                    productSubCategory:productSubCat
                 }).then(() => {
                     alert("Product successfully saved ");
                     location.reload()
