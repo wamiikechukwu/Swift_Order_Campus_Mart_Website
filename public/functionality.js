@@ -39,20 +39,27 @@ $(function () {
     let vendorPhoneNum;
     //--
 
-    let fastFood = ["Rice", "Snack", "Soup"]
-    let groceries = ["Fruits & Vegetable", "Oil and Spice & Herbs", "Milk, snack and beverages", "Drinks and wines", "Dairy, Cheese and Eggs", "Frozen food", "Caned & Packaged food", "Grains, Pasta & Noodle", "Bread and Bakery", "Meat and Seafood"]
-    let houseHold = ["empty"]
-    let sport = ["Shop clothing", "Fitness accessories", "Strength Training", "Team Sport Accessories", "Bicycles"]
-    let healthCare = ["Safety Glove", "Hand Sanitizer &  Nose Mask", "Menstrual Care", "Toothbrush and Toothpaste (dental care", "Malaria & Fever Drug"]
-    let personalCare = ["Make Up", "Haircare", "Body care"]
-    let lodge = ["Self cons", "Flat", "Single Rooms", "Boys Quarter"]
-    let computer = ["Desktop Computers", "Laptops", "External Hard Disk", "USB Flash Drive", "Anti-Virus & Internet Security", "KeyBoard and Mouse", "Printer & Printer ink/toners", "Batteries & UPS and Chargers", "Video Projector"]
-    let phone = ["Small Phones", "Smart Phone", "Charger & Chord", "Android Tablet and Accessories", "Earphones & Bluetooth Headset", "Smart Watches", "Screen Watches", "Screen Protectors and Cases", "Micro SD card and Adapter", "Selfie Sticks & Tripod", "Batteries"]
-    let homeFurniture = ["Television & Video Sets", "Generator, Inverter & Stabilizer", "Home Decor", "Beddings", "Kitchen and Dinning Set", "Cloth and Shoe Storage", "Fans and Vacuum Cleaner", "Refrigerator and Cookers", "Air-Condition and Fan", "Washing Machine", "Sitting Room Set"]
-    let maleClothing = ["Shirts, Pols and T-Shirts", "Trousers and Jeans", "Boots and Sneakers", "Watches", "Suits/Blazers", "Fragrance and Perfums", "Ties, Belts & Cufflinks", "Hats and Caps", "Track Suits", "Wallets", "Chains", "Rings", "Under wears & Socks"]
-    let femaleClothing = ["Gowns & Dresses", "Tops, Tees & Polos", "Skirts", "UnderWears & Lingeries", "Trousers & Jean", "SleepWears/Pyjamas", "Shorts & Bumshots and Socks", "Watchess", "Perfumes & Fragrances", "Sandals and Slippers", "Casual Boots and Sneakers", "Earrings and Necklace", "Sunglasses", "Handbag", "Suits"]
+    let fastFood = ["Rice,beans and pasta", "Soups and sauces", "Soup bowls", "Protein", "Drinks and water", "Swallows", "Yam and  Plantain", "Chips", "Protein", "Finger foods"]
+    let groceries = ["Fruit and Vegetables", "Oil, Spice and herbs", "Milk , snacks and beverages", "Drinks and" +
+    " wines", "Dairy, Cheese, and Eggs", "Frozen food", "Caned and Packaged food", "Grains, Pasta and Noodle", "Bread" +
+    " and Bakery", "Meats and Seafood"]
+    let houseHold = ["Bathroom, toilet cleaners","Dish and kitchen cleaners","Brushes mops buckets","Air freshener" +
+    " and fragrances","Kitchen towels and serviettes","Plates and spoons","Soaps and detergent","Kitchen utensils","Microwave ovens ,blenders and toasters"]
+    let sport = ["Sports clothing", "Fitness accessories", "Strength training", "Team sport accessories", "Bicycles"]
+    let healthCare = ["Safety glove", "Hand Sanitizer &  Nose Mask", "Menstrual Care", "Toothbrush and Toothpaste", "Malaria & Fever Drug"]
+    let personalCare = ["Make Up", "Haircare", "Body creams"]
+    let lodge = ["Self cons", "Flats", "Single rooms", "Boys Quarter"]
+    let computer = ["Desktop Computers", "Laptops", "External Hard Disk", "USB Flash Drive & memory cards", "Anti-Virus &" +
+    " Internet Security", "Keyboard and Mouse", "Printers & printer ink", "Batteries & UPS and Chargers", "Video projectors"]
+    let phone = ["Small Phones", "Smart phones", "Charger & Chord", "Android Tablet and Accessories", "Earphones & Bluetooth Headset", "Smart Watches", "Screen protectors and cases", "Micro SD card and adapters", "Selfie stick and tripod", "Batteries"]
+    let homeFurniture = ["Television & Video Sets", "Generator, Inverter & Stabilizer", "Home Decor", "Beddings", "Kitchen and Dinning Set", "Cloth and Shoe Storage","Ironing and laundry","Fans and Vacuum Cleaner", "Refrigerator and Cookers", "Air-Condition and Fan", "Washing Machine", "Sitting Room Set"]
+    let maleClothing = ["Shirts, Polos and t-Shirts", "Trousers and Jeans", "Boots and Sneakers", "Watches", "Suits" +
+    " & Blazers", "Fragrances and Perfumes", "Ties, Belts & Cufflinks", "Hats and Caps", "Track Suits", "Wallets", "Chains", "Rings", "Under wears & Socks"]
+    let femaleClothing = ["Gowns & Dresses", "Tops, Tees & Polos", "Skirts", "UnderWears & Lingeries", "Trousers &" +
+    " Jean", "SleepWears & Pyjamas", "Shorts & Bumshots and Socks", "Watchess", "Perfumes & Fragrances", "Sandals and" +
+    " Slippers", "Casual Boots and Sneakers", "Earrings and Necklace", "Sunglasses", "Handbag", "Suits"]
     let handyMan = ["Phone Repairs", "House Hold Electronic Repairs", "Painter", "Home Cleaning Service", "Dry Cleaner", "Plumbers"]
-    let assignment = ["Year 1 Online Registration", "Typing, Printing & Photocopier work", "Project One"]
+    let assignment = ["Year 1 Online Registration", "Typing, Printing & Photocopier work", "Project Work"]
     let others = ["Baggage & Luggage", "Books and Stationary"]
 
     let subsectionsArr = [undefined, fastFood, groceries, houseHold, sport, healthCare, personalCare, lodge, computer, phone, homeFurniture, maleClothing, femaleClothing, handyMan, assignment, others];
@@ -94,7 +101,7 @@ $(function () {
 
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                db.collection("vendors").doc(productCat).collection(productSubCat).doc().set({
+                db.collection("product").doc(proXductCat).collection(productSubCat).doc().set({
                     title: title,
                     shortDes: shortDescription,
                     longDes: longDescription,
@@ -104,7 +111,7 @@ $(function () {
                     vendorPhoneNum: vendorPhoneNum,
                     file: imageDownloadLink,
                     productCategory: productCat,
-                    productSubCategory:productSubCat
+                    productSubCategory: productSubCat
                 }).then(() => {
                     alert("Product successfully saved ");
                     location.reload()
